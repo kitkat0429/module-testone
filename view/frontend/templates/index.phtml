@@ -1,0 +1,41 @@
+<h2>Test One Module</h2>
+<form class="form testone"
+      action="<?= $block->escapeUrl($block->getFormAction()) ?>"
+      id="testone-form"
+      method="post"
+      data-hasrequired="<?= $block->escapeHtmlAttr(__('* Required Fields')) ?>"
+      data-mage-init='{"validation":{}}'>
+      <fieldset class="fieldset">
+        <legend class="legend"><span><?= $block->escapeHtml(__('Calculate card probabilty')) ?></span></legend><br />
+        <div class="field note no-label"><?= $block->escapeHtml(__('System will calculate probablity of card getting pick.')) ?></div>
+        <div class="field name required">
+            <label class="label" for="name"><span><?= $block->escapeHtml(__('Select a suite')) ?></span></label>
+            <div class="control">
+            	<select name="suite" id="suite" title="<?= $block->escapeHtmlAttr(__('Suite')) ?>" data-validate="{required:true}">
+            		<option value="0"><?= $block->escapeHtml(__('Select suite')) ?>
+            		<?php foreach ($block->getCardSuiteOptions() as $cardsuite): ?>
+            		<option value="<?= $cardsuite->getId() ?>"><?= $cardsuite->getValue() ?>
+            		<?php endforeach; ?>
+            	</select>
+            </div>
+        </div>
+        <div class="field name required">
+            <label class="label" for="name"><span><?= $block->escapeHtml(__('Select a rank')) ?></span></label>
+            <div class="control">
+            	<select name="rank" id="rank" title="<?= $block->escapeHtmlAttr(__('Rank')) ?>" data-validate="{required:true}">
+            		<option value="0"><?= $block->escapeHtml(__('Select rank')) ?>
+            		<?php foreach ($block->getCardRankOptions() as $cardrank): ?>
+            		<option value="<?= $cardrank->getId() ?>"><?= $cardrank->getValue() ?>
+            		<?php endforeach; ?>
+            	</select>
+            </div>
+        </div>
+    </fieldset>
+    <div class="actions-toolbar">
+        <div class="primary">
+            <button type="submit" title="<?= $block->escapeHtmlAttr(__('Submit')) ?>" class="action submit primary">
+                <span><?= $block->escapeHtml(__('Pick')) ?></span>
+            </button>
+        </div>
+    </div>
+</form>

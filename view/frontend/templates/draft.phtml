@@ -1,0 +1,43 @@
+<?php
+    $card = $block->getPostData();
+    $pickedCard = $block->getPickedCard();
+    $draftCard = $block->getDraftedCard();
+?>
+<h2>Test One</h2>
+<form class="form testone"
+      action="<?= $block->escapeUrl($block->getFormAction()) ?>"
+      id="testone-form"
+      method="post">
+    <fieldset class="fieldset">
+        <legend class="legend"><span><?= $block->escapeHtml(__('Calculate card probabilty')) ?></span></legend><br />
+        <div class="field note no-label">
+            <?= $block->escapeHtml(__('You picked ')) ?><strong><?= $pickedCard['value'] ?></strong>
+        </div>
+        <?php if ($pickedCard['key'] == $draftCard['key']): ?>
+            <div class="field note no-label">
+                <?= $block->escapeHtml(__('Got it, the chance was ')) ?><strong><?= $block->getProbabilityPick() ?></strong>
+            </div>
+        <?php else: ?>
+            <div class="field note no-label">
+                <?= $block->escapeHtml(__('Drafted card ')) ?><strong><?= $draftCard['value'] ?></strong><br/>
+                <?= $block->escapeHtml(__('Probability for picked card on next draft: ')) ?><strong><?= $block->getProbabilityPick() ?></strong>
+            </div>
+        <?php endif; ?>
+    </fieldset>
+    <div class="actions-toolbar">
+        <input type="hidden" name="suite" value="<?= $card['suite'] ?>" />
+        <input type="hidden" name="rank" value="<?= $card['rank'] ?>" />
+        <div class="primary">
+        <?php if ($pickedCard['key'] != $draftCard['key']): ?>
+            <button type="submit" title="<?= $block->escapeHtmlAttr(__('Submit')) ?>" class="action submit primary">
+                <span><?= $block->escapeHtml(__('Try another draft')) ?></span>
+            </button>
+        <?php endif; ?>
+            <button class="action button primary"
+                    data-mage-init='{"redirectUrl": {"url": "<?= $block->getBackAction() ?>"}}'
+                    type="button" title="<?= $block->escapeHtmlAttr(__('Pick a different card')) ?>">
+                <span><?= $block->escapeHtmlAttr(__('Pick a different card')) ?></span>
+            </button>
+        </div>
+    </div>
+</form>

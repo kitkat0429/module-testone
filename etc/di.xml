@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework/objectManager/etc/config.xsd">
+	<type name="Test\One\Model\Session">
+		<arguments>
+			<argument name="storage" xsi:type="object">Test\One\Model\Session\Storage</argument>
+		</arguments>
+	</type>
+</config>
